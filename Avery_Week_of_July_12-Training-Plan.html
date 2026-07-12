@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avery — Training Week, July 12–19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F4F0;
+    --pine:#14332B;
+    --pine-soft:#2C5248;
+    --slate:#4A6B7C;
+    --foam:#CBDED4;
+    --signal:#F2C230;
+    --ink:#14332B;
+    --rule:rgba(20,51,43,.14);
+    --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:16px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 64px;}
+
+  /* ---------- masthead ---------- */
+  .mast{border-bottom:3px solid var(--pine);padding-bottom:14px;margin-bottom:22px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--slate);margin:0 0 6px;
+  }
+  h1{
+    font-family:var(--display);font-weight:800;font-size:clamp(34px,8vw,54px);
+    line-height:.94;letter-spacing:-.02em;text-transform:uppercase;margin:0;
+  }
+  h1 em{font-style:normal;display:block;color:var(--pine-soft);}
+  .mast-meta{
+    display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--slate);
+  }
+  .mast-meta b{color:var(--pine);font-weight:600;}
+
+  /* ---------- coach note ---------- */
+  .note{
+    background:var(--pine);color:#EFF3EF;border-radius:2px;
+    padding:22px 22px 20px;margin-bottom:30px;
+  }
+  .note h2{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--signal);margin:0 0 12px;font-weight:600;
+  }
+  .note p{margin:0 0 11px;font-size:15.5px;}
+  .note p:last-child{margin-bottom:0;}
+  .note ul{margin:0 0 11px;padding-left:19px;font-size:15.5px;}
+  .note li{margin-bottom:5px;}
+  .note .kicker{
+    font-family:var(--display);font-weight:800;text-transform:uppercase;
+    font-size:19px;line-height:1.15;letter-spacing:-.01em;color:#fff;
+    margin-top:16px;padding-top:14px;border-top:1px solid rgba(242,194,48,.35);
+  }
+
+  /* ---------- why strip ---------- */
+  .why{margin-bottom:30px;}
+  .why h2{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--slate);margin:0 0 4px;font-weight:600;
+  }
+  .why > p{margin:0 0 14px;font-size:15px;color:var(--pine-soft);}
+  .match{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;
+    border:1px solid var(--rule);border-left:4px solid var(--signal);
+    background:#fff;padding:12px 14px;margin-bottom:8px;border-radius:2px;
+  }
+  .match .from,.match .to{font-size:14px;line-height:1.35;}
+  .match .lbl{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--slate);display:block;margin-bottom:2px;
+  }
+  .match strong{font-weight:600;}
+  .arrow{font-family:var(--mono);color:var(--signal);font-weight:600;font-size:15px;}
+
+  /* ---------- days ---------- */
+  .day{
+    border-top:1px solid var(--rule);padding:16px 0;
+    display:grid;grid-template-columns:74px 1fr;gap:16px;align-items:start;
+  }
+  .day:last-of-type{border-bottom:1px solid var(--rule);}
+  .stamp{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--slate);line-height:1.5;padding-top:2px;
+  }
+  .stamp b{display:block;font-family:var(--display);font-size:22px;font-weight:800;
+    color:var(--pine);letter-spacing:-.01em;line-height:1;margin-bottom:3px;}
+  .day-body h3{
+    font-family:var(--display);font-weight:600;font-size:17px;text-transform:uppercase;
+    letter-spacing:.01em;margin:0 0 6px;
+  }
+  .day-body p{margin:0 0 6px;font-size:15px;}
+  .day-body p:last-child{margin-bottom:0;}
+  .day-body .aside{color:var(--slate);font-size:14px;font-style:italic;}
+
+  /* ---------- key sessions ---------- */
+  .key{
+    background:#fff;border:1px solid var(--rule);border-top:5px solid var(--signal);
+    border-radius:2px;padding:22px;margin:26px 0;
+  }
+  .key-head{border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:16px;}
+  .key-tag{
+    display:inline-block;background:var(--signal);color:var(--pine);
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:9px;
+  }
+  .key-head h3{
+    font-family:var(--display);font-weight:800;text-transform:uppercase;
+    font-size:clamp(21px,5vw,27px);line-height:1.05;letter-spacing:-.01em;margin:0 0 7px;
+  }
+  .key-head .sub{margin:0;font-size:14.5px;color:var(--pine-soft);}
+
+  .block{margin-bottom:18px;}
+  .block:last-child{margin-bottom:0;}
+  .block > h4{
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--slate);margin:0 0 8px;font-weight:600;
+  }
+  .block p{margin:0 0 7px;font-size:15px;}
+  .block p:last-child{margin-bottom:0;}
+
+  /* split table */
+  table{width:100%;border-collapse:collapse;margin-bottom:9px;}
+  th{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--slate);text-align:left;font-weight:600;
+    border-bottom:1px solid var(--pine);padding:0 8px 6px 0;
+  }
+  th:last-child,td:last-child{text-align:right;padding-right:0;}
+  td{border-bottom:1px solid var(--rule);padding:11px 8px 11px 0;font-size:15px;vertical-align:top;}
+  td.rep{font-family:var(--display);font-weight:800;font-size:19px;white-space:nowrap;width:62px;}
+  td.tgt{font-family:var(--mono);font-size:13.5px;color:var(--pine-soft);white-space:nowrap;}
+  td .cue{display:block;white-space:normal;font-size:13.5px;color:var(--slate);margin-top:2px;line-height:1.35;}
+  td.write{
+    font-family:var(--mono);color:#B9C6BE;font-size:13px;letter-spacing:.08em;width:74px;
+    padding-left:0;
+  }
+  input.split{
+    width:100%;min-width:0;background:transparent;
+    border:none;border-bottom:1.5px solid var(--rule);
+    font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.04em;
+    color:var(--pine);text-align:right;padding:2px 0 3px;outline:none;
+  }
+  input.split::placeholder{color:#B9C6BE;font-weight:400;letter-spacing:.08em;}
+  input.split:focus{border-bottom-color:var(--signal);border-bottom-width:2px;}
+  input.split:not(:placeholder-shown){border-bottom-color:var(--slate);}
+  tr.rest td{border-bottom:1px dashed var(--rule);padding:8px 0;}
+  tr.rest .rep{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--slate);
+    letter-spacing:.1em;text-transform:uppercase;}
+  tr.rest span{font-size:13.5px;color:var(--slate);}
+
+  /* recovery block inside a day */
+  .rec{
+    border:1px solid var(--rule);border-left:4px solid var(--slate);
+    background:#fff;border-radius:2px;padding:14px 16px;margin-top:16px;
+  }
+  .rec h4{margin-top:0;color:var(--slate);}
+  .rec h2{
+    margin-top:0;color:var(--slate);border-bottom-color:var(--slate);
+  }
+  .rec > p{font-size:14px;color:var(--pine-soft);margin:0 0 8px;}
+
+  /* checklist */
+  .check{list-style:none;margin:0;padding:0;}
+  .check li{
+    display:flex;gap:10px;align-items:flex-start;
+    padding:7px 0;border-bottom:1px solid var(--rule);font-size:15px;cursor:pointer;
+  }
+  .check li:last-child{border-bottom:none;}
+  .box{
+    flex:0 0 17px;height:17px;margin-top:2px;border:1.5px solid var(--pine-soft);
+    border-radius:2px;position:relative;transition:background .12s;
+  }
+  .check li.done .box{background:var(--signal);border-color:var(--signal);}
+  .check li.done .box::after{
+    content:"";position:absolute;left:5px;top:1px;width:4px;height:9px;
+    border:solid var(--pine);border-width:0 2px 2px 0;transform:rotate(42deg);
+  }
+  .check li.done .txt{opacity:.42;text-decoration:line-through;}
+
+  /* ---------- section head ---------- */
+  .section-head{
+    font-family:var(--display);font-weight:800;text-transform:uppercase;
+    font-size:22px;letter-spacing:-.01em;margin:34px 0 0;
+  }
+
+  /* ---------- inside day bodies ---------- */
+  .day-body h2{
+    font-family:var(--display);font-weight:800;text-transform:uppercase;
+    font-size:15px;letter-spacing:.02em;color:var(--pine);
+    margin:16px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--signal);
+  }
+  .day-body ul{margin:0 0 8px;padding-left:18px;font-size:15px;}
+  .day-body li{margin-bottom:6px;}
+  .day-body li .aside{margin-top:3px;}
+  .day-body hr{
+    border:none;border-top:1px solid var(--rule);margin:16px 0 0;
+  }
+  .day-body h4{
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--slate);margin:15px 0 7px;font-weight:600;
+  }
+  .day-body a{
+    color:#0000EE;text-decoration:underline;text-underline-offset:2px;
+  }
+  .day-body a:visited{color:#551A8B;}
+  .day-body a:hover{color:#0000EE;text-decoration-thickness:2px;}
+  .day-body table{margin-top:2px;}
+  .day-body .next{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--slate);margin-top:14px;
+  }
+  .day-body .next b{color:var(--pine);font-weight:600;}
+
+  /* mantra */
+  .mantra{
+    border:2px dashed var(--pine-soft);border-radius:2px;padding:16px 18px;
+    margin:16px 0 4px;background:var(--foam);
+  }
+  .mantra h4{
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--pine-soft);margin:0 0 5px;font-weight:600;
+  }
+  .mantra p{margin:0 0 14px;font-size:14px;color:var(--pine-soft);}
+  .mantra label{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;}
+  .mantra label:last-child{margin-bottom:2px;}
+  .mantra .n{
+    font-family:var(--mono);font-size:12px;font-weight:600;color:var(--pine-soft);
+    flex:0 0 auto;opacity:.6;
+  }
+  .mantra input{
+    flex:1 1 auto;min-width:0;background:transparent;border:none;
+    border-bottom:2px solid var(--pine-soft);
+    font-family:var(--display);font-weight:800;text-transform:uppercase;
+    font-size:clamp(16px,4.4vw,22px);letter-spacing:.01em;color:var(--pine);
+    padding:4px 0;outline:none;
+  }
+  .mantra input::placeholder{color:rgba(20,51,43,.26);font-weight:400;letter-spacing:.02em;}
+  .mantra input:focus{border-bottom-color:var(--signal);}
+
+  .sign{
+    margin-top:34px;padding-top:16px;border-top:3px solid var(--pine);
+    font-family:var(--display);font-weight:800;text-transform:uppercase;
+    font-size:clamp(19px,4.6vw,25px);line-height:1.15;letter-spacing:-.01em;
+  }
+  .sign span{color:var(--signal);-webkit-text-stroke:.4px var(--pine-soft);}
+
+  @media (max-width:520px){
+    .day{grid-template-columns:58px 1fr;gap:12px;}
+    .match{grid-template-columns:1fr;gap:4px;}
+    .arrow{transform:rotate(90deg);width:1em;}
+    td.write{width:56px;}
+    .key{padding:18px 16px;}
+  }
+  /* saved-state footer */
+  .saved{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+    margin-top:26px;padding-top:14px;border-top:1px solid var(--rule);
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--slate);
+  }
+  .saved button{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    background:none;border:none;border-bottom:1px solid var(--slate);
+    color:var(--slate);padding:0 0 1px;cursor:pointer;
+  }
+  .saved button:hover{color:var(--pine);border-bottom-color:var(--pine);}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    body{background:#fff;font-size:11.5pt;}
+    .wrap{max-width:100%;padding:0;}
+    .rec,.mantra,.note,table{break-inside:avoid;}
+    .day-body h2,.day-body h4{break-after:avoid;}
+    .stamp{break-after:avoid;}
+    .saved{display:none;}
+    .day-body a{color:#14332B;text-decoration:underline;}
+    .mantra input{border-bottom-width:1.5px;}
+    input.split{border-bottom:1.5px solid #14332B !important;}
+    .box{border-color:#14332B;background:#fff !important;}
+    .check li.done .box::after{display:none;}
+    .check li.done .txt{opacity:1;text-decoration:none;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Maine Summer Vacation 2026 &nbsp;·&nbsp; Two weeks out</p>
+    <h1>Race Week<em>Rehearsal</em></h1>
+    <div class="mast-meta">
+      <span>SUN <b>JUL 12</b> — SUN <b>JUL 19</b></span>
+      <span>MILEAGE <b>16–18</b></span>
+      <span>HARD DAYS <b>2</b></span>
+    </div>
+  </header>
+
+  <section class="note">
+    <h2>2 weeks out from Nationals</h2>
+    <p>It will be fun and exciting to work on things that simulate race week at Nationals! This is a chance to see how it feels to do hard days back to back and to dial in recovery.
+ The point isn't to prove anything — it's to find out what it feels like, so nothing surprises you at Nationals.</p>
+    <p>Practice recovery this week - good sleep, good food, some mobility, cold plunges, etc. They consistently make a big difference in races.</p>
+    <p>Another focus will be mental strategies. This is a good week to:</p>
+    <ul>
+      <li><strong>Visualize the races.</strong> The energy at the start, the laps, how you'll feel. Come up with a plan to help you stay positive — and know it will be hard at times.</li>
+      <li><strong>Dial in your mantra.</strong> Write it down Tuesday. Use it in both workouts.</li>
+      <li><strong>Practice having fun while doing hard things.</strong> Smile. Laugh sometimes.</li>
+      <li><strong>Look back at the season.</strong> You have done so many awesome things with running this season. Hard training, fast races, new events — like a throws relay :). You have everything you need already.</li>
+    </ul>
+    <p>Nationals is where you get to enjoy all of the hard work you put in this season.</p>
+    <p class="kicker">The races will be fast and fun. Just like you.</p>
+  </section>
+
+  <section class="why">
+    <h2>Overview</h2>
+    <p>Thursday and Friday of this week are set up to mimic Thursday and Friday of race week. Same days, same order, same 24-hour turnaround.</p>
+  </section>
+<h2 class="section-head">Training Schedule</h2>
+  <div class="day">
+    <div class="stamp"><b>12</b>Sun</div>
+    <div class="day-body">
+      <h3>Base run</h3>
+      <p><a href="https://docs.google.com/document/u/0/d/1WNtsWV4RPo6IHfqdRo9FUYcKiT7C60omGaEMcRyevSY/edit">Dynamic warmup.</a><br>
+      <strong>4.99 mile</strong> 🤣 base run — scope out places to do intervals.<br>
+      <a href="https://docs.google.com/document/u/0/d/1C2z25RA3Qjug94Vyf5pDAyNC1w4FYkak_649IUT1TRI/edit">Mobility circuit.</a></p>
+    </div>
+  </div>
+  <div class="day">
+    <div class="stamp"><b>13</b>Mon</div>
+    <div class="day-body">
+      <h3>Cross train</h3>
+      <p><a href="https://docs.google.com/document/u/0/d/1WNtsWV4RPo6IHfqdRo9FUYcKiT7C60omGaEMcRyevSY/edit">Dynamic warmup.</a><br>
+        Swim, bike, surf, hike — something fun.</p>
+      <p><a href="https://docs.google.com/document/d/1BTJ_moMKoCjIEenNqLlmOfR0islRvGeNDNB17GbKJ4s/edit?usp=sharing">Strength circuit</a> — <strong>1 round only, not 2.</strong></p>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="stamp"><b>14</b>Tue</div>
+    <div class="day-body">
+      <h3>Base run + strides + mantra</h3>
+       <p><a href="https://docs.google.com/document/u/0/d/1WNtsWV4RPo6IHfqdRo9FUYcKiT7C60omGaEMcRyevSY/edit">Dynamic warmup.</a><br>
+       <strong>2–3 mile</strong> base run with <strong>4 × 30 second strides</strong> mixed in.<br>
+      <a href="https://docs.google.com/document/u/0/d/1C2z25RA3Qjug94Vyf5pDAyNC1w4FYkak_649IUT1TRI/edit">Mobility circuit.</a></p>
+      <div class="mantra">
+        <h4>Today's homework — your mantras</h4>
+        <p>Three or four words each. Use words that describe how you <em>want</em> to race. Write down up to three, then try them out Thursday and Friday and keep the ones that work.</p>
+        <label><span class="n">1</span><input type="text" placeholder="Write it here" aria-label="Mantra 1" maxlength="40"></label>
+        <label><span class="n">2</span><input type="text" placeholder="Optional" aria-label="Mantra 2" maxlength="40"></label>
+        <label><span class="n">3</span><input type="text" placeholder="Optional" aria-label="Mantra 3" maxlength="40"></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="stamp"><b>15</b>Wed</div>
+    <div class="day-body">
+      <h3>Cross train</h3>
+      <p><a href="https://docs.google.com/document/u/0/d/1WNtsWV4RPo6IHfqdRo9FUYcKiT7C60omGaEMcRyevSY/edit">Dynamic warmup.</a><br>
+        Swim, bike, surf, hike — something fun.<br>
+      <a href="https://docs.google.com/document/u/0/d/1C2z25RA3Qjug94Vyf5pDAyNC1w4FYkak_649IUT1TRI/edit">Mobility circuit.</a></p>
+      <p class="aside">Easy on purpose. The next two days will be harder.</p>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="stamp"><b>16</b>Thu</div>
+    <div class="day-body">
+      <h3>1500m Prelim Simulation</h3>
+      <p>This workout will simulate the 1500m prelims 2 weeks from today. Keep it controlled and smooth.</p>
+      <ul>
+        <li>It would be great to do this on a flat dirt road, bike path, or section of quiet road. You can use effort and feeling rather than actual paces. Also you can do it by time or distance.<p class="aside">If you do it on a dirt road <strong>definitely</strong> do it by time and effort NOT distance and actual paces.</p></li>
+        <li>Practice using your mantra during this workout.</li>
+        <li>Practice smiling at least once during each interval — it's been shown that brief periods of smiling actually improve running economy by 2–3%! <em>Kipchoge (the 1:59 marathoner) does it deliberately at least once a mile during his races and workouts</em> 😁️</li>
+      </ul>
+
+      <h4>Warm up</h4>
+      <p><a href="https://docs.google.com/document/u/0/d/1WNtsWV4RPo6IHfqdRo9FUYcKiT7C60omGaEMcRyevSY/edit">Dynamic warmup.</a> This is the same as your race day warmup.</p>
+      <hr>
+      <h2>The Workout — 800m - REST - 400m - REST - 300m</h2>
+      <table>
+        <thead>
+          <tr><th>Rep</th><th>Target</th><th>Actual</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rep">800m</td>
+            <td class="tgt">2:30–2:40<span class="cue">Mile pace. Start slower and build into it.</span></td>
+            <td class="write"><input type="text" class="split" data-key="thu-1" inputmode="text" maxlength="7" placeholder="_ _ : _ _" aria-label="Actual time for 800m"></td>
+          </tr>
+          <tr class="rest">
+            <td class="rep">Rest</td>
+            <td colspan="2"><span>3–4 min full recovery. Walk, legs up, a few sips of water or electrolytes.</span></td>
+          </tr>
+          <tr>
+            <td class="rep">400m</td>
+            <td class="tgt">75–80 sec<span class="cue">Mile pace or a touch faster. Build into it.</span></td>
+            <td class="write"><input type="text" class="split" data-key="thu-2" inputmode="text" maxlength="7" placeholder="_ _ : _ _" aria-label="Actual time for 400m"></td>
+          </tr>
+          <tr class="rest">
+            <td class="rep">Rest</td>
+            <td colspan="2"><span>3–4 min full recovery. Same drill.</span></td>
+          </tr>
+          <tr>
+            <td class="rep">300m</td>
+            <td class="tgt">50–55 sec<span class="cue">Fast and <em>relaxed</em>. <br>This is the last lap of a prelim when you're already in position to advance.<br> Finish feeling like you could do another one.</span></td>
+            <td class="write"><input type="text" class="split" data-key="thu-3" inputmode="text" maxlength="7" placeholder="_ _ : _ _" aria-label="Actual time for 300m"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Cool down</h4>
+      <p>5–10 min easy jog, about half a mile.</p>
+
+      <div class="rec">
+        <h2>Recovery Routine</h2>
+        <p>This is what makes tomorrow possible. Try these things and use them to create a routine you can use at Nationals. Tap each one as you do it.</p>
+        <ul class="check" id="recovery-thu">
+          <li><span class="box"></span><span class="txt"><strong>Eat within 30 minutes.</strong> Carbs first, some protein with them. This is the single biggest lever you have on how tomorrow feels.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Legs up the wall, 10–15 minutes.</strong></span></li>
+          <li><span class="box"></span><span class="txt"><strong>Get in cold water.</strong> Maine has a lot of it.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Real meals the rest of the day.</strong> Don't skip or graze.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Short nap</strong> if you can get one.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Legs up again</strong> a couple more times.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Long, good night of sleep.</strong> Nine hours if you can.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="stamp"><b>17</b>Fri</div>
+    <div class="day-body">
+      <h3>3000 Workout</h3>
+      <p>This workout will simulate the 3000 the day after your 1500 prelim. This is a chance to practice running hard two days in a row. It will be the last hard workout you do before Nationals.</p>
+      <p>Your legs may seem tired before you start, but you'll probably surprise yourself once you get going. <strong>You can do it.</strong></p>
+      <ul>
+          <li>It would be great to do this on a flat dirt road, bike path, or section of quiet road. You can use effort and feeling rather than actual paces. Also you can do it by time or distance.<p class="aside">If you do it on a dirt road <strong>definitely</strong> do it by time and effort NOT distance and actual paces.</p></li>
+          <li>Use your mantra. Don't forget to smile once per rep.</li>
+          <li><strong>Channel Elhousine Elazzaoui</strong> — remember how smooth he looked on the track and how he just kept going. That's what you look like.</li>
+      </ul>
+
+      <h4>Warm up</h4>
+      <p><a href="https://docs.google.com/document/u/0/d/1WNtsWV4RPo6IHfqdRo9FUYcKiT7C60omGaEMcRyevSY/edit">Dynamic warmup.</a> This is the same as your race day warmup.</p>
+<hr>
+      <h2>The workout — 3 × 800–1000m @ 3k pace</h2>
+      <p>Run the first one, then <strong>pick your remaining interval distances (800m or 1000m) based on how you feel.</strong> Start each rep slower and build into the pace.</p>
+      <table>
+        <thead>
+          <tr><th>Rep</th><th>Target</th><th>Actual</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rep">1</td>
+            <td class="tgt">2:45–3:25<span class="cue">3k pace. Settle in and find the rhythm.</span></td>
+            <td class="write"><input type="text" class="split" data-key="fri-4" inputmode="text" maxlength="7" placeholder="_ _ : _ _" aria-label="Actual time for Rep 1"></td>
+          </tr>
+          <tr class="rest"><td class="rep">Rest</td><td colspan="2"><span>3–4 min. Walk, legs up, sips of water or electrolytes.</span></td></tr>
+          <tr>
+            <td class="rep">2</td>
+            <td class="tgt">2:45–3:25<span class="cue">Same pace. This is the one where you hold on to the good thoughts and let the bad ones go.</span></td>
+            <td class="write"><input type="text" class="split" data-key="fri-5" inputmode="text" maxlength="7" placeholder="_ _ : _ _" aria-label="Actual time for Rep 2"></td>
+          </tr>
+          <tr class="rest"><td class="rep">Rest</td><td colspan="2"><span>3–4 min.</span></td></tr>
+          <tr>
+            <td class="rep">3</td>
+            <td class="tgt">2:45–3:25<span class="cue"><strong>Kick the last 300m.</strong> Fast and strong. Do this one on the smoothest surface you've got.</span></td>
+            <td class="write"><input type="text" class="split" data-key="fri-6" inputmode="text" maxlength="7" placeholder="_ _ : _ _" aria-label="Actual time for Rep 3"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Cool down</h4>
+      <p>5–10 min easy jog, about half a mile.</p>
+
+      <div class="rec">
+        <h2>Recovery Routine</h2>
+        <p>Good recovery makes multiple races go way better! Try these things and use them to create a routine you can use at Nationals. Tap each one as you do it.</p>
+        <ul class="check" id="recovery-fri">
+          <li><span class="box"></span><span class="txt"><strong>Eat within 30 minutes.</strong> Carbs first, some protein with them. This is the single biggest lever you have on how tomorrow feels.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Legs up the wall, 10–15 minutes.</strong></span></li>
+          <li><span class="box"></span><span class="txt"><strong>Get in cold water.</strong> Maine has a lot of it.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Real meals the rest of the day.</strong> Don't skip or graze.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Short nap</strong> if you can get one.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Legs up again</strong> a couple more times.</span></li>
+          <li><span class="box"></span><span class="txt"><strong>Long, good night of sleep.</strong> Nine hours if you can.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="stamp"><b>18</b>Sat</div>
+    <div class="day-body">
+      <h3>Rest day</h3>
+      <p>Chill day, no running, maybe some light walking, light swimming or yoga. That's the workout.</p>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="stamp"><b>19</b>Sun</div>
+    <div class="day-body">
+      <h3>Easy</h3>
+      <p><a href="https://docs.google.com/document/u/0/d/1WNtsWV4RPo6IHfqdRo9FUYcKiT7C60omGaEMcRyevSY/edit">Dynamic warmup.</a><br>
+        <strong>2–4 mile easy run</strong> OR cross train.<br>
+      <a href="https://docs.google.com/document/u/0/d/1C2z25RA3Qjug94Vyf5pDAyNC1w4FYkak_649IUT1TRI/edit">Mobility circuit.</a></p>
+    </div>
+  </div>
+
+  <p class="saved">
+    <span id="saved-msg">Your splits, checkmarks, and mantras save on this device.</span>
+    <button type="button" id="clear-all">Clear everything</button>
+  </p>
+
+</div>
+
+<script>
+(function () {
+  var KEY = 'avery-week-jul12';
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function save(state) {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); return true; }
+    catch (e) { return false; }
+  }
+
+  var state = load();
+  if (!state.checks) state.checks = {};
+  if (!state.mantras) state.mantras = {};
+  if (!state.splits) state.splits = {};
+
+  /* ---- checklists ---- */
+  document.querySelectorAll('.check').forEach(function (list) {
+    var listId = list.id || 'list';
+    list.querySelectorAll('li').forEach(function (li, i) {
+      var id = listId + ':' + i;
+
+      if (state.checks[id]) li.classList.add('done');
+
+      li.setAttribute('role', 'checkbox');
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('aria-checked', state.checks[id] ? 'true' : 'false');
+
+      function toggle() {
+        var on = li.classList.toggle('done');
+        li.setAttribute('aria-checked', on ? 'true' : 'false');
+        state.checks[id] = on;
+        save(state);
+      }
+      li.addEventListener('click', toggle);
+      li.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+  });
+
+  /* ---- mantras ---- */
+  document.querySelectorAll('.mantra input').forEach(function (input, i) {
+    var id = 'mantra:' + i;
+    if (state.mantras[id]) input.value = state.mantras[id];
+    input.addEventListener('input', function () {
+      state.mantras[id] = input.value;
+      save(state);
+    });
+  });
+
+  /* ---- split times ---- */
+  document.querySelectorAll('input.split').forEach(function (input) {
+    var id = input.dataset.key;
+    if (state.splits[id]) input.value = state.splits[id];
+    input.addEventListener('input', function () {
+      state.splits[id] = input.value;
+      save(state);
+    });
+  });
+
+  /* ---- storage unavailable (private mode, some file:// contexts) ---- */
+  if (!save(state)) {
+    var msg = document.getElementById('saved-msg');
+    if (msg) msg.textContent = "Heads up: this browser won't save your splits or checkmarks.";
+  }
+
+  /* ---- clear ---- */
+  var clear = document.getElementById('clear-all');
+  if (clear) clear.addEventListener('click', function () {
+    if (!confirm('Clear all checkmarks, mantras, and split times?')) return;
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    state = { checks: {}, mantras: {}, splits: {} };
+    document.querySelectorAll('.check li').forEach(function (li) {
+      li.classList.remove('done');
+      li.setAttribute('aria-checked', 'false');
+    });
+    document.querySelectorAll('.mantra input, input.split').forEach(function (inp) { inp.value = ''; });
+  });
+})();
+</script>
+</body>
+</html>
